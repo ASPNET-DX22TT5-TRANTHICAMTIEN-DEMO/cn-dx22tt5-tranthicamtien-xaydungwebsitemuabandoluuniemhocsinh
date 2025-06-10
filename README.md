@@ -3,7 +3,7 @@
 ## ✅ Thông tin sinh viên
 - Họ tên: Trần Thị Cẩm Tiên
 - Mã lớp: DX22TT5
-- Tên repository: ASPNET-DX22TT5-TRANTHICAMTIEN-DEMO
+- Tên repository: cn-dx22tt5-tranthicamtien-xaydungwebsitemuabandoluuniemhocsinh
 
 ## 💻 Công nghệ sử dụng
 - ASP.NET MVC
@@ -12,7 +12,7 @@
 
 ## 📦 Hướng dẫn cài đặt
 
-1. Clone repository về máy bằng Git: `git clone https://github.com/ASPNET-DX22TT5-TRANTHICAMTIEN-DEMO.git`
+1. Clone repository về máy bằng Git: `git clone https://github.com/ASPNET-DX22TT5-TRANTHICAMTIEN-DEMO/cn-dx22tt5-tranthicamtien-xaydungwebsitemuabandoluuniemhocsinh.git`
 2. Mở thư mục trong Visual Studio.
 
 3. Khôi phục các gói NuGet (nếu cần):  
