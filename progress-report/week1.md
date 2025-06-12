@@ -15,19 +15,24 @@
   - Hướng dẫn cài đặt
   - Mô tả công nghệ
   - Kế hoạch tiến độ
-- Thiết lập môi trường làm việc:
-  - Cài đặt Visual Studio
-  - Cài SQL Server
-  - Tạo project ASP.NET MVC mới
-- Vẽ sơ bộ bố cục giao diện trang chủ và menu chức năng
+- Tìm hiểu công nghệ:
+ • PHP: Hiểu được cách hoạt động phía server, cấu trúc file PHP.
+ • MySQL: Cách tạo cơ sở dữ liệu và kết nối từ PHP.
+ • Web server: Cài đặt và sử dụng XAMPP để test trên localhost.
+- Phân tích và mô tả bài toán:
+ • Xác định yêu cầu người dùng: học sinh, giáo viên, quản trị viên.
+ • Đề xuất các chức năng chính: xem sản phẩm, thêm giỏ hàng, đặt hàng, quản lý hàng hóa, thống kê.
+- Phân tích hệ thống:
+ • Vẽ sơ đồ Use Case: thể hiện các chức năng chính mà người dùng có thể thao tác.
+ • Phác thảo sơ đồ hoạt động tổng thể (dạng draft) cho quy trình bán hàng.
 
 ---
 
 ## 🔜 Kế hoạch tuần sau (Tuần 2)
-- Thiết kế cơ sở dữ liệu ban đầu (sản phẩm, danh mục, đơn hàng, người dùng…)
-- Tạo giao diện trang danh sách sản phẩm
-- Tìm hiểu cách kết nối database với Entity Framework
-- Commit source code đầu tiên lên repository
+ • Thiết kế cơ sở dữ liệu (ERD, bảng dữ liệu).
+ • Phác họa giao diện người dùng.
+ • Viết chương 1 – 3 vào bản báo cáo Word.
+ • Upload mockup giao diện và sơ đồ ERD lên GitHub.
 
 ---
 
