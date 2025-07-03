@@ -2,9 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config.php';
+require_once 'includes/config.php';
 
-// Lấy tất cả sản phẩm
 $result = $conn->query("SELECT * FROM sanpham");
 ?>
 <!DOCTYPE html>
@@ -13,7 +12,6 @@ $result = $conn->query("SELECT * FROM sanpham");
   <meta charset="UTF-8">
   <title>Danh sách sản phẩm - Quà lưu niệm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -21,18 +19,16 @@ $result = $conn->query("SELECT * FROM sanpham");
 
 <?php include 'header.php'; ?>
 
-<!-- 🌸 Banner -->
 <div class="banner mb-4">
   <img src="img/banner1.jpg" class="img-fluid w-100 rounded shadow" alt="Banner quà lưu niệm">
 </div>
 
 <div class="container mt-5 mb-5">
-  <h2 class="text-center mb-4">🎁 Danh sách sản phẩm</h2>
+  <h2 class="text-center mb-4">Danh sách sản phẩm</h2>
 
-  <!-- Tìm kiếm + Lọc -->
   <form method="get" action="#" class="row mb-4">
     <div class="col-md-6 mb-2">
-      <input type="text" name="search" class="form-control" placeholder="🔍 Tìm kiếm sản phẩm... (chưa hoạt động)">
+      <input type="text" name="search" class="form-control" placeholder="Tìm kiếm sản phẩm... (chưa hoạt động)">
     </div>
     <div class="col-md-3 mb-2">
       <select class="form-select" name="category">
@@ -47,7 +43,6 @@ $result = $conn->query("SELECT * FROM sanpham");
     </div>
   </form>
 
-  <!-- Danh sách sản phẩm -->
   <div class="row">
     <?php while ($sp = $result->fetch_assoc()) { ?>
       <div class="col-md-4 mb-4">
@@ -56,7 +51,7 @@ $result = $conn->query("SELECT * FROM sanpham");
           <div class="card-body d-flex flex-column">
             <h5 class="card-title"><?php echo htmlspecialchars($sp['ten']); ?></h5>
             <p class="card-text text-danger fw-bold"><?php echo number_format($sp['gia']); ?>đ</p>
-            <a href="product-detail.php?id=<?php echo $sp['id']; ?>" class="btn btn-hong mt-auto">🔍 Xem chi tiết</a>
+            <a href="product-detail.php?id=<?php echo $sp['id']; ?>" class="btn btn-hong mt-auto">Xem chi tiết</a>
           </div>
         </div>
       </div>

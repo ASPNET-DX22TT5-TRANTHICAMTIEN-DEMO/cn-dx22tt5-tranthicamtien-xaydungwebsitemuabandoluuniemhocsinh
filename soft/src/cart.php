@@ -2,14 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config.php';
+require_once 'includes/config.php';
 
-// Khởi tạo giỏ nếu chưa có
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Xử lý thêm sản phẩm
 if (isset($_GET['add'])) {
     $id = intval($_GET['add']);
     $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
@@ -17,7 +15,6 @@ if (isset($_GET['add'])) {
     exit;
 }
 
-// Xử lý giảm số lượng
 if (isset($_GET['decrease'])) {
     $id = intval($_GET['decrease']);
     if (isset($_SESSION['cart'][$id])) {
@@ -30,7 +27,6 @@ if (isset($_GET['decrease'])) {
     exit;
 }
 
-// Xử lý xóa sản phẩm
 if (isset($_GET['remove'])) {
     $id = intval($_GET['remove']);
     unset($_SESSION['cart'][$id]);
@@ -108,7 +104,7 @@ if (isset($_GET['remove'])) {
 
     <div class="text-right">
       <a href="products.php" class="btn btn-secondary">← Tiếp tục mua hàng</a>
-      <a href="checkout.php" class="btn btn-success">✅ Thanh toán</a>
+      <a href="checkout.php" class="btn btn-success">Thanh toán</a>
     </div>
   <?php endif; ?>
 </div>

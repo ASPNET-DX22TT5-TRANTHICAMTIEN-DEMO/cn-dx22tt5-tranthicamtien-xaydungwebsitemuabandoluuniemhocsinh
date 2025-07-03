@@ -1,14 +1,12 @@
 <?php
 session_start();
-include 'config.php';
+require_once 'includes/config.php';
 
-// ✅ Kiểm tra đăng nhập
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// ✅ Kiểm tra giỏ hàng
 if (empty($_SESSION['cart'])) {
     echo "<div class='container mt-5'><h4>Giỏ hàng đang trống. <a href='products.php'>Quay lại mua sắm</a></h4></div>";
     exit;
@@ -20,13 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = trim($_POST['phone']);
     $delivery_date = date('Y-m-d');
 
-    // ✅ Tính tổng tiền
     $tongtien = 0;
     $items = [];
 
     $ids = implode(',', array_map('intval', array_keys($_SESSION['cart'])));
 
-    // Bảo vệ nếu giỏ hàng rỗng sau khi lọc
     if (empty($ids)) {
         echo "Không có sản phẩm nào để thanh toán.";
         exit;
@@ -52,26 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     }
 
-    // ✅ Thêm đơn hàng vào bảng `orders`
     $user_id = $_SESSION['user_id'];
     $stmt = $conn->prepare("INSERT INTO orders (user_id, total, order_date, status) VALUES (?, ?, NOW(), 'Đang xử lý')");
     $stmt->bind_param("id", $user_id, $tongtien);
     $stmt->execute();
     $order_id = $stmt->insert_id;
 
-    // ✅ Thêm thông tin giao hàng
     $ship = $conn->prepare("INSERT INTO shipping_info (order_id, receiver_name, address, phone, delivery_date) VALUES (?, ?, ?, ?, ?)");
     $ship->bind_param("issss", $order_id, $receiver_name, $address, $phone, $delivery_date);
     $ship->execute();
 
-    // ✅ Thêm chi tiết đơn hàng
     $ct = $conn->prepare("INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
     foreach ($items as $item) {
         $ct->bind_param("iiid", $order_id, $item['sanpham_id'], $item['soluong'], $item['giatien']);
         $ct->execute();
     }
 
-    // ✅ Xóa giỏ hàng sau khi thanh toán
     unset($_SESSION['cart']);
     header("Location: checkout-success.php?order_id=" . $order_id);
     exit;
@@ -90,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.php'; ?>
 
 <div class="container mt-5">
-  <h3>🚚 Thông tin giao hàng</h3>
+  <h3>Thông tin giao hàng</h3>
   <form method="POST">
     <div class="form-group">
       <label>Họ tên người nhận</label>

@@ -1,5 +1,4 @@
 <?php
-// Khởi động session nếu chưa có
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,7 +14,6 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 <body>
 
-<!-- 🔗 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
   <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
@@ -25,13 +23,13 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light mx-1" href="index.php">🏠 Trang chủ</a>
+          <a class="nav-link btn btn-outline-light mx-1" href="index.php">Trang chủ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light mx-1" href="products.php">🛍️ Sản phẩm</a>
+          <a class="nav-link btn btn-outline-light mx-1" href="products.php">Sản phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-light mx-1" href="cart.php">🛒 Giỏ hàng</a>
+          <a class="nav-link btn btn-outline-light mx-1" href="cart.php">Giỏ hàng</a>
         </li>
         <?php if (isset($_SESSION['user'])): ?>
           <?php if ($_SESSION['role'] === 'admin'): ?>
@@ -43,14 +41,14 @@ if (session_status() === PHP_SESSION_NONE) {
             </li>
           <?php endif; ?>
             <li class="nav-item">
-              <a class="nav-link btn btn-outline-warning mx-1" href="logout.php">🚪 Đăng xuất (<?php echo htmlspecialchars($_SESSION['user']); ?>)</a>
+              <a class="nav-link btn btn-outline-warning mx-1" href="logout.php">Đăng xuất (<?php echo htmlspecialchars($_SESSION['user']); ?>)</a>
             </li>
           <?php else: ?>
             <li class="nav-item">
-              <a class="nav-link btn btn-outline-success mx-1" href="login.php">🔐 Đăng nhập</a>
+              <a class="nav-link btn btn-outline-success mx-1" href="login.php">Đăng nhập</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link btn btn-outline-primary mx-1" href="register.php">📝 Đăng ký</a>
+              <a class="nav-link btn btn-outline-primary mx-1" href="register.php">Đăng ký</a>
             </li>
           <?php endif; ?>
       </ul>

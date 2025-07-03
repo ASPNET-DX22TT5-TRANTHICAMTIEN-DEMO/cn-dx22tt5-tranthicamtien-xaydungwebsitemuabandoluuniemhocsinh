@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+require_once 'includes/config.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
@@ -25,7 +25,6 @@ if ($result->num_rows === 0) {
 
 $sp = $result->fetch_assoc();
 
-// Cập nhật dữ liệu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ten = $_POST['ten'];
     $gia = $_POST['gia'];
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.php'; ?>
 
 <div class="container mt-5">
-  <h3 class="mb-4">✏️ Sửa sản phẩm</h3>
+  <h3 class="mb-4">Sửa sản phẩm</h3>
   <form method="post" class="p-4 bg-light rounded shadow-sm">
     <div class="form-group">
       <label>Tên sản phẩm:</label>
@@ -76,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label>Mô tả:</label>
       <textarea name="mota" class="form-control" rows="3"><?php echo htmlspecialchars($sp['mota']); ?></textarea>
     </div>
-    <button type="submit" class="btn btn-success">💾 Lưu thay đổi</button>
-    <a href="admin.php" class="btn btn-secondary">⬅️ Quay lại</a>
+    <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+    <a href="admin.php" class="btn btn-secondary">Quay lại</a>
   </form>
 </div>
 

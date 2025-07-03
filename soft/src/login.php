@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config.php';
+require_once 'includes/config.php';
 
 $error = '';
 
@@ -10,23 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
 
-    // Chuẩn bị câu lệnh SQL để tránh SQL Injection
     $stmt = $conn->prepare("SELECT id, username, password, role FROM nguoidung WHERE username = ?");
     $stmt->bind_param("s", $user);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Kiểm tra người dùng có tồn tại
     if ($result && $result->num_rows === 1) {
         $row = $result->fetch_assoc();
 
-        // Kiểm tra mật khẩu: hỗ trợ cả password hash và plain text (nếu CSDL cũ)
         if (password_verify($pass, $row['password']) || $pass === $row['password']) {
             $_SESSION['user'] = $row['username'];
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['role'] = $row['role'];
 
-            // Chuyển trang tùy theo role
             if ($row['role'] === 'admin') {
                 header("Location: admin.php");
             } else {

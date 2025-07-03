@@ -1,10 +1,9 @@
 <?php
-include 'config.php';
+require_once 'includes/config.php';
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    // Sử dụng prepared statement để tránh SQL injection
     $stmt = $conn->prepare("SELECT * FROM sanpham WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -13,11 +12,11 @@ if (isset($_GET['id'])) {
     if ($result->num_rows > 0) {
         $sp = $result->fetch_assoc();
     } else {
-        echo "<div style='padding:20px; color:red;'>❌ Sản phẩm không tồn tại.</div>";
+        echo "<div style='padding:20px; color:red;'>Sản phẩm không tồn tại.</div>";
         exit;
     }
 } else {
-    echo "<div style='padding:20px; color:red;'>⚠️ Không có sản phẩm nào được chọn.</div>";
+    echo "<div style='padding:20px; color:red;'>Không có sản phẩm nào được chọn.</div>";
     exit;
 }
 ?>
@@ -41,12 +40,12 @@ if (isset($_GET['id'])) {
     </div>
     <div class="col-md-7">
       <h2 class="text-primary font-weight-bold"><?php echo htmlspecialchars($sp['ten']); ?></h2>
-      <p><strong>💰 Giá:</strong> <span class="text-danger"><?php echo number_format($sp['gia']); ?> VNĐ</span></p>
-      <p><strong>📂 Loại:</strong> <?php echo htmlspecialchars($sp['loai']); ?></p>
+      <p><strong>Giá:</strong> <span class="text-danger"><?php echo number_format($sp['gia']); ?> VNĐ</span></p>
+      <p><strong>Loại:</strong> <?php echo htmlspecialchars($sp['loai']); ?></p>
       <p><strong>📝 Mô tả:</strong> <?php echo nl2br(htmlspecialchars($sp['mota'])); ?></p>
       <div class="mt-4">
         <a href="cart.php?add=<?php echo $sp['id']; ?>" class="btn btn-hong">🛒 Thêm vào giỏ hàng</a>
-        <a href="products.php" class="btn btn-secondary">⬅️ Quay lại danh sách</a>
+        <a href="products.php" class="btn btn-secondary">Quay lại danh sách</a>
       </div>
     </div>
   </div>

@@ -1,4 +1,3 @@
-/* Font đẹp từ Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
@@ -9,19 +8,16 @@ body {
   padding: 0;
 }
 
-/* Container spacing */
 .container {
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-/* Tiêu đề trang */
 h2, h3 {
   font-weight: 700;
   color: #2c3e50;
 }
 
-/* Nút màu hồng */
 .btn-hong {
   background-color: #f48fb1;
   color: #fff;
@@ -38,7 +34,6 @@ h2, h3 {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Bảng sản phẩm */
 .table {
   background-color: #fff;
   border-radius: 6px;
@@ -50,7 +45,6 @@ h2, h3 {
   margin: 0 auto;
 }
 
-/* Thẻ sản phẩm */
 .card-product {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -86,7 +80,6 @@ h2, h3 {
   text-align: center;
 }
 
-/* Giỏ hàng */
 .cart-box {
   background-color: #fff;
   padding: 25px;
@@ -94,7 +87,6 @@ h2, h3 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* Điều chỉnh số lượng */
 .quantity-control {
   display: flex;
   align-items: center;
@@ -119,7 +111,6 @@ h2, h3 {
 }
 
 
-/* Nút chi tiết */
 .btn-detail {
   display: block;
   width: 80%;
@@ -130,7 +121,6 @@ h2, h3 {
   font-weight: bold;
 }
 
-/* Banner trang chủ */
 .banner img {
   max-height: 300px;
   object-fit: cover;
@@ -143,7 +133,6 @@ h2, h3 {
 }
 
 
-/* Phần giới thiệu */
 .intro-section {
   min-height: 100vh;
   background: linear-gradient(to right, #fce4ec, #f3e5f5);
@@ -165,7 +154,6 @@ h2, h3 {
   color: #6a1b9a;
 }
 
-/* Navbar */
 .navbar {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   position: sticky;

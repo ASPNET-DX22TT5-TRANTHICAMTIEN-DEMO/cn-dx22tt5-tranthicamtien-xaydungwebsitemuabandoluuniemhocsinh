@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+require_once 'includes/config.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 <body>
 <?php include 'header.php'; ?>
 <div class="container mt-5">
-  <h3>📦 Danh sách đơn hàng</h3>
+  <h3>Danh sách đơn hàng</h3>
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
