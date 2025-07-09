@@ -37,7 +37,7 @@ Mở `index.html` → sẽ hiển thị trang chủ mẫu.
 
 ## 📎 Tác giả
 
-- Trần Thị Cam Tiên – DX22TT5  
+- Trần Thị Cẩm Tiên – DX22TT5  
 - Dự án: Xây dựng website mua bán đồ lưu niệm học sinh
 
 ---

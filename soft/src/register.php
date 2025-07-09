@@ -10,14 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirm  = $_POST['confirm'];
 
-    // Kiểm tra độ dài username
     if (strlen($username) < 3) {
         $error = "⚠️ Tên đăng nhập phải có ít nhất 3 ký tự.";
     } elseif ($password !== $confirm) {
         $error = "⚠️ Mật khẩu xác nhận không khớp.";
     } else {
-        // Kiểm tra username đã tồn tại chưa
-        $stmt = $conn->prepare("SELECT id FROM nguoidung WHERE username = ?");
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
@@ -25,11 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->num_rows > 0) {
             $error = "⚠️ Tên đăng nhập đã được sử dụng.";
         } else {
-            // Hash mật khẩu
             $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-            // Thêm người dùng mới
-            $insert = $conn->prepare("INSERT INTO nguoidung (username, password, role) VALUES (?, ?, 'user')");
+            $insert = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, 'user')");
             $insert->bind_param("ss", $username, $hashed);
             if ($insert->execute()) {
                 $success = "✅ Đăng ký thành công! Bạn có thể <a href='login.php'>đăng nhập</a> ngay.";
@@ -54,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.php'; ?>
 
 <div class="container mt-5 mb-5">
-  <div class="row justify-content-center">
+  <div class="row justify-connamet-center">
     <div class="col-md-6">
       <div class="card shadow-lg p-4">
         <h3 class="mb-4 text-center">📝 Đăng ký tài khoản</h3>

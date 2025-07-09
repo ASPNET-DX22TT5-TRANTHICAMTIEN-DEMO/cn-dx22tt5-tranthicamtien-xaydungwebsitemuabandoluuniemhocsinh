@@ -45,9 +45,7 @@ Giỏ hàng và đặt hàng
 
 Tìm kiếm và lọc sản phẩm
 
-Phân quyền (Admin, Người dùng, Người bán)
-
-Người bán có thể đăng, sửa, xóa sản phẩm
+Phân quyền (Admin, Người dùng)
 
 Admin quản lý toàn bộ hệ thống
 

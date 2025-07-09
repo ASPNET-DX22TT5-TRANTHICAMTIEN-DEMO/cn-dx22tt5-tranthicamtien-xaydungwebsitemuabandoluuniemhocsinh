@@ -35,8 +35,7 @@ CREATE TABLE [orders] (
   [user_id] int,
   [order_date] datetime NOT NULL,
   [status] varchar(50),
-  [total_price] decimal(10,2),
-  [shipping_address] text
+  [total_amount] decimal(10,2),
 )
 GO
 

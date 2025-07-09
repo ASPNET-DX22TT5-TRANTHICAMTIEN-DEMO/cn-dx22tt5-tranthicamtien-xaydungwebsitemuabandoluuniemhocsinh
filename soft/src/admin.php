@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     }
 
     $id = intval($_POST['delete']);
-    $stmt = $conn->prepare("DELETE FROM sanpham WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 
@@ -30,10 +30,10 @@ $limit = 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 $offset = ($page - 1) * $limit;
 
-$total = $conn->query("SELECT COUNT(*) AS total FROM sanpham")->fetch_assoc()['total'];
+$total = $conn->query("SELECT COUNT(*) AS total_amount FROM products")->fetch_assoc()['total_amount'];
 $totalPages = ceil($total / $limit);
 
-$stmt = $conn->prepare("SELECT * FROM sanpham ORDER BY id DESC LIMIT ? OFFSET ?");
+$stmt = $conn->prepare("SELECT * FROM products ORDER BY id DESC LIMIT ? OFFSET ?");
 $stmt->bind_param("ii", $limit, $offset);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -52,7 +52,7 @@ $result = $stmt->get_result();
 
 <div class="container mt-5">
   <h3 class="mb-4">Quản lý sản phẩm</h3>
-  <a href="them-sanpham.php" class="btn btn-success mb-3">➕ Thêm sản phẩm</a>
+  <a href="add_product.php" class="btn btn-success mb-3">➕ Thêm sản phẩm</a>
 
   <?php if (isset($_SESSION['success'])): ?>
     <div class="alert alert-success">
@@ -75,14 +75,14 @@ $result = $stmt->get_result();
       <?php while ($sp = $result->fetch_assoc()) { ?>
         <tr>
           <td><?php echo $sp['id']; ?></td>
-          <td><?php echo htmlspecialchars($sp['ten']); ?></td>
-          <td><?php echo number_format($sp['gia']); ?>đ</td>
+          <td><?php echo htmlspecialchars($sp['name']); ?></td>
+          <td><?php echo number_format($sp['price']); ?>đ</td>
           <td>
-            <img src="img/<?php echo htmlspecialchars($sp['hinh']); ?>" width="60" class="rounded shadow-sm">
+            <img src="img/<?php echo htmlspecialchars($sp['image']); ?>" width="60" class="rounded shadow-sm">
           </td>
-          <td><?php echo htmlspecialchars($sp['loai']); ?></td>
+          <td><?php echo htmlspecialchars($sp['category']); ?></td>
           <td>
-            <a href="sua-sanpham.php?id=<?php echo $sp['id']; ?>" class="btn btn-sm btn-warning">Sửa</a>
+            <a href="edit_product.php?id=<?php echo $sp['id']; ?>" class="btn btn-sm btn-warning">Sửa</a>
             <form method="POST" action="admin.php" style="display:inline;">
               <input type="hidden" name="delete" value="<?php echo $sp['id']; ?>">
               <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">

@@ -13,21 +13,20 @@ Thư mục này lưu trữ các tài liệu liên quan đến đồ án, bao g�
 
 ---
 
-## 📁 Cấu trúc đề xuất
+## 📁 Cấu trúc
 
 | Tên file / thư mục           | Mô tả nội dung                                  |
 |------------------------------|--------------------------------------------------|
-| `baocao-doan.docx`           | Báo cáo chính thức                              |
-| `baocao-doan.pdf`            | Báo cáo xuất bản PDF                            |
+| `baocao.docx`           | Báo cáo chính thức                              |
+| `baocao.pdf`            | Báo cáo xuất bản PDF                            |
 | `slide-trinh-bay.pptx`       | Slide trình bày bảo vệ đồ án                    |
-| `sodoluong.png / erd.png`    | Sơ đồ luồng xử lý, sơ đồ thực thể              |
 | `phu-luc/`                   | Thư mục phụ lục kèm theo                        |
-| `hinh-anh/`                  | Hình ảnh minh họa giao diện, quá trình thực hiện|
+
 
 
 ---
 
 ## 📎 Tác giả
 
-- Trần Thị Cam Tiên – DX22TT5  
+- Trần Thị Cẩm Tiên – DX22TT5  
 - Dự án: Xây dựng website mua bán đồ lưu niệm học sinh

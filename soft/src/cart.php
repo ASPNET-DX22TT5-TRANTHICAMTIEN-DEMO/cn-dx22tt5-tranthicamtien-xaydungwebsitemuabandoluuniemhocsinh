@@ -55,7 +55,7 @@ if (isset($_GET['remove'])) {
   <?php else: ?>
     <?php
     $ids = implode(',', array_map('intval', array_keys($_SESSION['cart'])));
-    $result = $conn->query("SELECT * FROM sanpham WHERE id IN ($ids)");
+    $result = $conn->query("SELECT * FROM products WHERE id IN ($ids)");
     $tong = 0;
     ?>
     <table class="table table-bordered">
@@ -73,13 +73,13 @@ if (isset($_GET['remove'])) {
         <?php while ($sp = $result->fetch_assoc()):
           $id = $sp['id'];
           $sl = $_SESSION['cart'][$id];
-          $tt = $sl * $sp['gia'];
+          $tt = $sl * $sp['price'];
           $tong += $tt;
         ?>
         <tr>
-          <td><?php echo htmlspecialchars($sp['ten']); ?></td>
-          <td><img src="img/<?php echo htmlspecialchars($sp['hinh']); ?>" width="60" alt=""></td>
-          <td><?php echo number_format($sp['gia']); ?>đ</td>
+          <td><?php echo htmlspecialchars($sp['name']); ?></td>
+          <td><img src="img/<?php echo htmlspecialchars($sp['image']); ?>" width="60" alt=""></td>
+          <td><?php echo number_format($sp['price']); ?>đ</td>
           <td>
             <div class="quantity-control">
               <a href="cart.php?decrease=<?php echo $id; ?>" class="btn btn-sm btn-outline-secondary">−</a>

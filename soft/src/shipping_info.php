@@ -8,16 +8,19 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
 }
 
 $sql = "
-SELECT o.id AS donhang_id, o.total, o.order_date, o.status,
+SELECT o.id AS orders_id, o.total_amount, o.order_date, o.status,
        u.username,
        s.receiver_name, s.address, s.phone, s.delivery_date
 FROM orders o
-JOIN nguoidung u ON o.user_id = u.id
+JOIN users u ON o.user_id = u.id
 LEFT JOIN shipping_info s ON o.id = s.order_id
 ORDER BY o.id DESC
 ";
 
 $result = $conn->query($sql);
+if (!$result) {
+    die("Lỗi truy vấn: " . $conn->error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +52,10 @@ $result = $conn->query($sql);
     <tbody>
     <?php while ($row = $result->fetch_assoc()): ?>
       <tr>
-        <td>#<?php echo $row['donhang_id']; ?></td>
+        <td>#<?php echo $row['orders_id']; ?></td>
         <td><?php echo htmlspecialchars($row['username']); ?></td>
         <td><?php echo $row['order_date']; ?></td>
-        <td><?php echo number_format($row['total'], 0); ?>đ</td>
+        <td><?php echo number_format($row['total_amount'], 0); ?>đ</td>
         <td><?php echo htmlspecialchars($row['status']); ?></td>
         <td><?php echo htmlspecialchars($row['receiver_name']); ?></td>
         <td><?php echo htmlspecialchars($row['address']); ?></td>

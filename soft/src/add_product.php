@@ -10,15 +10,15 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ten = $_POST['ten'];
-    $gia = $_POST['gia'];
-    $hinh = $_POST['hinh'];
-    $loai = $_POST['loai'];
-    $mota = $_POST['mota'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $category = $_POST['category'];
+    $description = $_POST['description'];
 
-    if ($ten && $gia && $hinh) {
-        $stmt = $conn->prepare("INSERT INTO sanpham (ten, gia, hinh, loai, mota) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sisss", $ten, $gia, $hinh, $loai, $mota);
+    if ($name && $price && $image) {
+        $stmt = $conn->prepare("INSERT INTO sanpham (name, price, image, category, description) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sisss", $name, $price, $image, $category, $description);
         $stmt->execute();
         header("Location: admin.php");
         exit;

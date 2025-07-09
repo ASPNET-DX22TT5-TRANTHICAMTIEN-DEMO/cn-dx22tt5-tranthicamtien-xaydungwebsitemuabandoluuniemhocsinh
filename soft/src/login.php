@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = trim($_POST['username']);
     $pass = trim($_POST['password']);
 
-    $stmt = $conn->prepare("SELECT id, username, password, role FROM nguoidung WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, username, password, role FROM users WHERE username = ?");
     $stmt->bind_param("s", $user);
     $stmt->execute();
     $result = $stmt->get_result();

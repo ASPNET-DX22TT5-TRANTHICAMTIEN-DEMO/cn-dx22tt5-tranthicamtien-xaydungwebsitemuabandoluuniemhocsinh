@@ -26,14 +26,14 @@ if ($result->num_rows === 0) {
 $sp = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ten = $_POST['ten'];
-    $gia = $_POST['gia'];
-    $hinh = $_POST['hinh'];
-    $loai = $_POST['loai'];
-    $mota = $_POST['mota'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $category = $_POST['category'];
+    $description = $_POST['description'];
 
-    $stmt = $conn->prepare("UPDATE sanpham SET ten=?, gia=?, hinh=?, loai=?, mota=? WHERE id=?");
-    $stmt->bind_param("sisssi", $ten, $gia, $hinh, $loai, $mota, $id);
+    $stmt = $conn->prepare("UPDATE sanpham SET name=?, price=?, image=?, category=?, description=? WHERE id=?");
+    $stmt->bind_param("sisssi", $name, $price, $image, $category, $description, $id);
     $stmt->execute();
     header("Location: admin.php");
     exit;
@@ -57,23 +57,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <form method="post" class="p-4 bg-light rounded shadow-sm">
     <div class="form-group">
       <label>Tên sản phẩm:</label>
-      <input type="text" name="ten" class="form-control" value="<?php echo htmlspecialchars($sp['ten']); ?>" required>
+      <input type="text" name="name" class="form-control" value="<?php echo htmlspecialchars($sp['name']); ?>" required>
     </div>
     <div class="form-group">
       <label>Giá (VNĐ):</label>
-      <input type="number" name="gia" class="form-control" value="<?php echo $sp['gia']; ?>" required>
+      <input type="number" name="price" class="form-control" value="<?php echo $sp['price']; ?>" required>
     </div>
     <div class="form-group">
       <label>Tên file hình (vd: sanpham1.jpg):</label>
-      <input type="text" name="hinh" class="form-control" value="<?php echo htmlspecialchars($sp['hinh']); ?>" required>
+      <input type="text" name="image" class="form-control" value="<?php echo htmlspecialchars($sp['image']); ?>" required>
     </div>
     <div class="form-group">
       <label>Loại sản phẩm:</label>
-      <input type="text" name="loai" class="form-control" value="<?php echo htmlspecialchars($sp['loai']); ?>">
+      <input type="text" name="category" class="form-control" value="<?php echo htmlspecialchars($sp['category']); ?>">
     </div>
     <div class="form-group">
       <label>Mô tả:</label>
-      <textarea name="mota" class="form-control" rows="3"><?php echo htmlspecialchars($sp['mota']); ?></textarea>
+      <textarea name="description" class="form-control" rows="3"><?php echo htmlspecialchars($sp['description']); ?></textarea>
     </div>
     <button type="submit" class="btn btn-success">Lưu thay đổi</button>
     <a href="admin.php" class="btn btn-secondary">Quay lại</a>

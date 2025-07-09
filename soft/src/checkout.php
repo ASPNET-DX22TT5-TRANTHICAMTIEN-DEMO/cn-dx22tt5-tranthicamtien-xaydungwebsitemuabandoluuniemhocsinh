@@ -2,6 +2,7 @@
 session_start();
 require_once 'includes/config.php';
 
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $result = $conn->query("SELECT * FROM sanpham WHERE id IN ($ids)");
+    $result = $conn->query("SELECT * FROM products WHERE id IN ($ids)");
     if (!$result || $result->num_rows === 0) {
         echo "Không lấy được sản phẩm từ giỏ hàng.";
         exit;
@@ -37,19 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     while ($sp = $result->fetch_assoc()) {
         $id = $sp['id'];
         $soluong = $_SESSION['cart'][$id];
-        $giatien = $sp['gia'];
-        $thanhtien = $giatien * $soluong;
+        $pricetien = $sp['price'];
+        $thanhtien = $pricetien * $soluong;
         $tongtien += $thanhtien;
 
         $items[] = [
-            'sanpham_id' => $id,
+            'products_id' => $id,
             'soluong' => $soluong,
-            'giatien' => $giatien
+            'pricetien' => $pricetien
         ];
     }
 
     $user_id = $_SESSION['user_id'];
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, total, order_date, status) VALUES (?, ?, NOW(), 'Đang xử lý')");
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, order_date, status) VALUES (?, ?, NOW(), 'Đang xử lý')");
     $stmt->bind_param("id", $user_id, $tongtien);
     $stmt->execute();
     $order_id = $stmt->insert_id;
@@ -60,12 +61,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $ct = $conn->prepare("INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
     foreach ($items as $item) {
-        $ct->bind_param("iiid", $order_id, $item['sanpham_id'], $item['soluong'], $item['giatien']);
+        $ct->bind_param("iiid", $order_id, $item['products_id'], $item['soluong'], $item['pricetien']);
         $ct->execute();
     }
 
-    unset($_SESSION['cart']);
-    header("Location: checkout-success.php?order_id=" . $order_id);
+    $_SESSION['last_order_id'] = $order_id;
+    $_SESSION['total_amount'] = $tongtien;
+    header("Location: checkout-success.php");
+    exit;
+
     exit;
 }
 ?>

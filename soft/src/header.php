@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" connamet="width=device-width, initial-scale=1">
   <title>Lưu niệm học sinh</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
               <a class="nav-link btn btn-outline-light mx-1" href="admin.php">Quản lý sản phẩm</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link btn btn-outline-light mx-1" href="quanly-donhang.php">Quản lý đơn hàng</a>
+              <a class="nav-link btn btn-outline-light mx-1" href="shipping_info.php">Quản lý đơn hàng</a>
             </li>
           <?php endif; ?>
             <li class="nav-item">

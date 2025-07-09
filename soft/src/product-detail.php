@@ -4,7 +4,7 @@ require_once 'includes/config.php';
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    $stmt = $conn->prepare("SELECT * FROM sanpham WHERE id = ?");
+    $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Chi tiết sản phẩm - <?php echo htmlspecialchars($sp['ten']); ?></title>
+  <title>Chi tiết sản phẩm - <?php echo htmlspecialchars($sp['name']); ?></title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
@@ -36,13 +36,13 @@ if (isset($_GET['id'])) {
 <div class="container mt-5 mb-5">
   <div class="row">
     <div class="col-md-5">
-      <img src="img/<?php echo htmlspecialchars($sp['hinh']); ?>" class="img-fluid border rounded shadow-sm" alt="<?php echo htmlspecialchars($sp['ten']); ?>">
+      <img src="img/<?php echo htmlspecialchars($sp['image']); ?>" class="img-fluid border rounded shadow-sm" alt="<?php echo htmlspecialchars($sp['name']); ?>">
     </div>
     <div class="col-md-7">
-      <h2 class="text-primary font-weight-bold"><?php echo htmlspecialchars($sp['ten']); ?></h2>
-      <p><strong>Giá:</strong> <span class="text-danger"><?php echo number_format($sp['gia']); ?> VNĐ</span></p>
-      <p><strong>Loại:</strong> <?php echo htmlspecialchars($sp['loai']); ?></p>
-      <p><strong>📝 Mô tả:</strong> <?php echo nl2br(htmlspecialchars($sp['mota'])); ?></p>
+      <h2 class="text-primary font-weight-bold"><?php echo htmlspecialchars($sp['name']); ?></h2>
+      <p><strong>Giá:</strong> <span class="text-danger"><?php echo number_format($sp['price']); ?> VNĐ</span></p>
+      <p><strong>Loại:</strong> <?php echo htmlspecialchars($sp['category']); ?></p>
+      <p><strong>📝 Mô tả:</strong> <?php echo nl2br(htmlspecialchars($sp['description'])); ?></p>
       <div class="mt-4">
         <a href="cart.php?add=<?php echo $sp['id']; ?>" class="btn btn-hong">🛒 Thêm vào giỏ hàng</a>
         <a href="products.php" class="btn btn-secondary">Quay lại danh sách</a>
