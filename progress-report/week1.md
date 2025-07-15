@@ -1,6 +1,6 @@
 # 🗓️ Báo cáo tiến độ - Tuần 1
 
-## 👤 Thông tin sinh viên
+## Thông tin sinh viên
 - Họ tên: Trần Thị Cẩm Tiên
 - Lớp: DX22TT5
 - Tên đồ án: Xây dựng website mua bán đồ lưu niệm học sinh
